@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CardProduct from '../components/CardProduct';
+import { getCategories } from '../services/api';
 
 type ProductList = {
   id: string;
@@ -8,26 +9,54 @@ type ProductList = {
   productPrice: string;
 };
 
+type CategoriasProp = {
+  id: string;
+  name: string;
+};
+
 function Index() {
-  const [productList, setProductList] = useState<Array<ProductList>>([]);
+  const [productList] = useState<Array<ProductList>>([]);
+  const [categorias, setCategorias] = useState<Array<CategoriasProp>>();
+
+  const ChamaGetCategories = async () => { setCategorias(await getCategories()); };
+
+  useEffect(() => {
+    ChamaGetCategories();
+  }, []);
 
   return (
     <>
-      <h2>Online Store Ts</h2>
-      <input type="text" />
-      {productList.length > 0 ? (
-        productList.map((product) => (
-          <CardProduct
-            key={ product.id }
-            productName={ product.productName }
-            productImg={ product.productImg }
-            productPrice={ product.productPrice }
-          />))
-      ) : (
-        <h3 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h3>
-      )}
+      <header>
+        <h2>Online Store Ts</h2>
+        <input type="text" />
+      </header>
+      <article>
+        <div>
+          <h3>Categorias:</h3>
+          <ul>
+            {categorias && categorias.map((element:CategoriasProp) => (
+              <li key={ element.id }>
+                { element.name }
+              </li>))}
+          </ul>
+        </div>
+        <div>
+          {productList.length > 0 ? (
+            productList.map((product) => (
+              <CardProduct
+                key={ product.id }
+                productName={ product.productName }
+                productImg={ product.productImg }
+                productPrice={ product.productPrice }
+              />))
+          ) : (
+            <h3 data-testid="home-initial-message">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </h3>
+          )}
+        </div>
+      </article>
+
     </>
   );
 }
