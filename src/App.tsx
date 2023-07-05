@@ -1,5 +1,5 @@
-import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import React from 'react';
 import Index from './pages/Index';
 
 function App() {
