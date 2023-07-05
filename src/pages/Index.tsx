@@ -35,7 +35,7 @@ function Index() {
           <h3>Categorias:</h3>
           <ul>
             {categorias && categorias.map((element:CategoriasProp) => (
-              <li key={ element.id }>
+              <li key={ element.id } data-testid="category">
                 { element.name }
               </li>))}
           </ul>
