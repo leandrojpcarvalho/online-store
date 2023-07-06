@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
 import Index from './pages/Index';
 import NotFound from './pages/NotFound';
 import ProductDetails from './pages/ProductDetails';

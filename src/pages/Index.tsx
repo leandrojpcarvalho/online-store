@@ -3,13 +3,7 @@ import CardProduct from '../components/CardProduct';
 import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
 import './index.css';
 import Header from '../components/Header';
-
-type ProductList = {
-  id: string;
-  title: string;
-  thumbnail: string;
-  price: string;
-};
+import { Product } from '../types';
 
 type CategoriasProp = {
   id: string;
@@ -17,7 +11,7 @@ type CategoriasProp = {
 };
 
 function Index() {
-  const [productList, setProductList] = useState<Array<ProductList>>([]);
+  const [productList, setProductList] = useState<Array<Product>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
   const [categorias, setCategorias] = useState<Array<CategoriasProp>>();
