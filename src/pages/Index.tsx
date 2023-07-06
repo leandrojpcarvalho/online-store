@@ -1,13 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CardProduct from '../components/CardProduct';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import './index.css';
+
 
 type ProductList = {
   id: string;
   title: string;
   thumbnail: string;
   price: string;
+};
+
+type CategoriasProp = {
+  id: string;
+  name: string;
 };
 
 function Index() {
@@ -48,6 +54,12 @@ function Index() {
       <article>
         <div className="container">
           <h3>Categorias:</h3>
+            <ul>
+              {categorias && categorias.map((element:CategoriasProp) => (
+                <li key={ element.id } data-testid="category">
+                  { element.name }
+                </li>))}
+            </ul>
         </div>
         <div className="grid">
           {productList.length > 0 ? (
@@ -62,7 +74,6 @@ function Index() {
                 />
               );
             })
-
           ) : (
             <h3 data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.
