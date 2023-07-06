@@ -7,7 +7,7 @@ type Props = {
 function CardProduct(props:Props) {
   const { productImg, productName, productPrice } = props;
   return (
-    <div className="card">
+    <div className="card" data-testid="product">
       <img src={ productImg } alt={ `Foto do produto ${productName}` } />
       <h3>{productName}</h3>
       <h4>{`R$ ${productPrice}`}</h4>
