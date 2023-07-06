@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 function Cart() {
-  const [isEmpty, setIsEmpy] = useState(true);
+  const [isEmpty, setIsEmpty] = useState(true);
 
   return (
     isEmpty
