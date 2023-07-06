@@ -34,20 +34,15 @@ function ProductDetails() {
     isLoading ? (
       <h2>Carregando...</h2>
     ) : (
-      <>
-        <header>
-          <img src="../src/assets/img/cart.svg" alt="" />
-        </header>
-        <section
-          className="product"
-        >
-          <img src={ thumbnail } alt="" data-testid="product-detail-image" />
-          <div className="details">
-            <h2 data-testid="product-detail-name">{ title }</h2>
-            <h3 data-testid="product-detail-price">{ price }</h3>
-          </div>
-        </section>
-      </>
+      <section
+        className="product"
+      >
+        <img src={ thumbnail } alt="" data-testid="product-detail-image" />
+        <div className="details">
+          <h2 data-testid="product-detail-name">{ title }</h2>
+          <h3 data-testid="product-detail-price">{ price }</h3>
+        </div>
+      </section>
     )
   );
 }
