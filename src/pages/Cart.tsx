@@ -6,7 +6,7 @@ function Cart() {
   return (
     isEmpty
       ? <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-      : <p>oi</p>
+      : null
   );
 }
 

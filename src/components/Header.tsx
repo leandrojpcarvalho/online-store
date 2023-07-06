@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
+
 type PropsHeader = {
   handleOnChange: (param: React.ChangeEvent<HTMLInputElement>) => void;
-  handleClick: () => void;
+  handleClick: (e:string) => void;
   inputValue: string;
 };
 
@@ -16,7 +18,7 @@ function Header({ handleOnChange, handleClick, inputValue }: PropsHeader) {
         />
         <button
           data-testid="query-button"
-          onClick={ handleClick }
+          onClick={ () => handleClick(inputValue) }
           className="search"
           aria-label="Search"
         >
@@ -24,7 +26,10 @@ function Header({ handleOnChange, handleClick, inputValue }: PropsHeader) {
         </button>
       </div>
       <img src="../src/assets/img/logo.svg" alt="" />
-      <img src="../src/assets/img/cart.svg" alt="" />
+      <Link to="/cart" data-testid="shopping-cart-button">
+        <img src="./src/assets/img/cart.svg" alt="carinho" />
+      </Link>
+
     </header>
   );
 }
