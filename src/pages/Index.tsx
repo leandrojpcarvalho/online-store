@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import CardProduct from '../components/CardProduct';
 import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
 import './index.css';
@@ -20,14 +19,18 @@ function Index() {
   const [productList, setProductList] = useState<Array<ProductList>>([]);
   const [input, setInput] = useState<string>('');
   const [categorias, setCategorias] = useState<Array<CategoriasProp>>();
-  //
+
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
   };
 
-  const handleclick = async () => {
-    const responseArrProducts = await getProductsFromCategoryAndQuery(undefined, input);
+  const handleclick = async (e:string) => {
+    const responseArrProducts = await getProductsFromCategoryAndQuery(undefined, e);
     setProductList(responseArrProducts.results);
+  };
+
+  const categoriesChange = async (e:string) => {
+    handleclick(e);
   };
 
   const ChamaGetCategories = async () => { setCategorias(await getCategories()); };
@@ -48,7 +51,7 @@ function Index() {
           />
           <button
             data-testid="query-button"
-            onClick={ handleclick }
+            onClick={ () => handleclick(input) }
             className="search"
             aria-label="Search"
           >
@@ -59,13 +62,18 @@ function Index() {
         <img src="../src/assets/img/cart.svg" alt="" />
       </header>
       <article>
-        <div className="container">
+        <div className="container list">
           <h3>Categorias:</h3>
           <ul>
             {categorias && categorias.map((element:CategoriasProp) => (
-              <li key={ element.id } data-testid="category">
+              <button
+                className="ulButton"
+                key={ element.id }
+                data-testid="category"
+                onClick={ () => categoriesChange(element.name) }
+              >
                 { element.name }
-              </li>))}
+              </button>))}
           </ul>
         </div>
         <div className="grid">
@@ -88,10 +96,6 @@ function Index() {
           )}
         </div>
       </article>
-
-      <Link to="/cart" data-testid="shopping-cart-button">
-        <img src="./wireframes/cart.jpg" alt="carinho" />
-      </Link>
     </div>
   );
 }

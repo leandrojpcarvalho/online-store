@@ -27,18 +27,27 @@ article {
   height: auto;
   margin: 0 auto;
   text-align: center;
-  width: 80%;
+  width: 100%;
 }
 
 .container {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  width: 20%;
+  justify-content: start;
+  width: 23%;
 }
 
 .row {
   align-items: center;
   flex-direction: row;
+  width: 300px;
+}
+
+.list {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .grid {
@@ -88,4 +97,23 @@ article {
 
 .search:hover {
   cursor: pointer;
+}
+
+.ulButton {
+  background-color: rgba(255, 255, 255, 0);
+  border: 0;
+  font-size: 15px;
+  height: 40px;
+  width: 100%;
+}
+
+.ulButton:hover {
+  background-color: rgba(0, 0, 0, 0.048);
+  color: #31c28d;
+  transition: 200ms;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }
