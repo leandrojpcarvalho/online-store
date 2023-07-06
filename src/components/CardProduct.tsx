@@ -7,11 +7,12 @@ type Props = {
 function CardProduct(props:Props) {
   const { productImg, productName, productPrice } = props;
   return (
-    <ul>
-      <li>nome</li>
-      <img src="" alt="algumaImage!" />
-      <li>R$ 2500</li>
-    </ul>
+    <div className="card">
+      <img src={ productImg } alt={ `Foto do produto ${productName}` } />
+      <h3>{productName}</h3>
+      <h4>{`R$ ${productPrice}`}</h4>
+      <button className="button">Adicionar ao carrinho</button>
+    </div>
   );
 }
 
