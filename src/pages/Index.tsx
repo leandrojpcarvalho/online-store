@@ -92,7 +92,7 @@ function Index() {
       <Link to="/cart" data-testid="shopping-cart-button">
         <img src="./wireframes/cart.jpg" alt="carinho" />
       </Link>
-    </>
+    </div>
   );
 }
 
