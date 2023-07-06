@@ -20,7 +20,7 @@ function Index() {
   const [productList, setProductList] = useState<Array<ProductList>>([]);
   const [input, setInput] = useState<string>('');
   const [categorias, setCategorias] = useState<Array<CategoriasProp>>();
-
+  //
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
   };
