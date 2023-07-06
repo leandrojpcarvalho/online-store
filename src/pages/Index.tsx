@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import CardProduct from '../components/CardProduct';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
 import './index.css';
-
 
 type ProductList = {
   id: string;
@@ -19,15 +18,14 @@ type CategoriasProp = {
 function Index() {
   const [productList, setProductList] = useState<Array<ProductList>>([]);
   const [input, setInput] = useState<string>('');
+  const [categorias, setCategorias] = useState<Array<CategoriasProp>>();
 
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.value);
-  };
 
-  const handleclick = async () => {
-    const responseArrProducts = await getProductsFromCategoryAndQuery(undefined, input);
-    setProductList(responseArrProducts.results);
-  };
+  const ChamaGetCategories = async () => { setCategorias(await getCategories()); };
+
+  useEffect(() => {
+    ChamaGetCategories();
+  }, []);
 
   return (
     <div className="main">
