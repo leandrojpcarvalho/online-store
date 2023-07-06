@@ -20,6 +20,14 @@ function Index() {
   const [input, setInput] = useState<string>('');
   const [categorias, setCategorias] = useState<Array<CategoriasProp>>();
 
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(event.target.value);
+  };
+
+  const handleclick = async () => {
+    const responseArrProducts = await getProductsFromCategoryAndQuery(undefined, input);
+    setProductList(responseArrProducts.results);
+  };
 
   const ChamaGetCategories = async () => { setCategorias(await getCategories()); };
 
@@ -52,12 +60,12 @@ function Index() {
       <article>
         <div className="container">
           <h3>Categorias:</h3>
-            <ul>
-              {categorias && categorias.map((element:CategoriasProp) => (
-                <li key={ element.id } data-testid="category">
-                  { element.name }
-                </li>))}
-            </ul>
+          <ul>
+            {categorias && categorias.map((element:CategoriasProp) => (
+              <li key={ element.id } data-testid="category">
+                { element.name }
+              </li>))}
+          </ul>
         </div>
         <div className="grid">
           {productList.length > 0 ? (
