@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CardProduct from '../components/CardProduct';
 import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
 import './index.css';
@@ -15,7 +16,7 @@ function Index() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
   const [categorias, setCategorias] = useState<Array<CategoriasProp>>();
-
+  //
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
   };
@@ -73,6 +74,10 @@ function Index() {
           {isLoading ? (<h3> carregando...</h3>) : (contentProductList)}
         </div>
       </article>
+
+      <Link to="/cart" data-testid="shopping-cart-button">
+        <img src="./wireframes/cart.jpg" alt="carinho" />
+      </Link>
     </div>
   );
 }
