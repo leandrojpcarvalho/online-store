@@ -3,13 +3,8 @@ import { Link } from 'react-router-dom';
 import CardProduct from '../components/CardProduct';
 import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
 import './index.css';
-
-type ProductList = {
-  id: string;
-  title: string;
-  thumbnail: string;
-  price: string;
-};
+import Header from '../components/Header';
+import { Product } from '../types';
 
 type CategoriasProp = {
   id: string;
@@ -17,7 +12,8 @@ type CategoriasProp = {
 };
 
 function Index() {
-  const [productList, setProductList] = useState<Array<ProductList>>([]);
+  const [productList, setProductList] = useState<Array<Product>>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
   const [categorias, setCategorias] = useState<Array<CategoriasProp>>();
   //
@@ -25,9 +21,11 @@ function Index() {
     setInput(event.target.value);
   };
 
-  const handleclick = async () => {
+  const handleClick = async () => {
+    setIsLoading(true);
     const responseArrProducts = await getProductsFromCategoryAndQuery(undefined, input);
     setProductList(responseArrProducts.results);
+    setIsLoading(false);
   };
 
   const ChamaGetCategories = async () => { setCategorias(await getCategories()); };
@@ -36,28 +34,32 @@ function Index() {
     ChamaGetCategories();
   }, []);
 
+  const contentProductList = productList.length > 0 ? (
+    productList.map((product) => {
+      const { id, price, thumbnail, title } = product;
+      return (
+        <CardProduct
+          key={ id }
+          id={ id }
+          productName={ title }
+          productImg={ thumbnail }
+          productPrice={ price }
+        />
+      );
+    })
+  ) : (
+    <h3 data-testid="home-initial-message">
+      Digite algum termo de pesquisa ou escolha uma categoria.
+    </h3>
+  );
+
   return (
     <div className="main">
-      <header>
-        <div className="container row">
-          <input
-            type="text"
-            data-testid="query-input"
-            onChange={ handleOnChange }
-            value={ input }
-          />
-          <button
-            data-testid="query-button"
-            onClick={ handleclick }
-            className="search"
-            aria-label="Search"
-          >
-            <img src="../src/assets/img/search.svg" alt="asfesds" />
-          </button>
-        </div>
-        <img src="../src/assets/img/logo.svg" alt="" />
-        <img src="../src/assets/img/cart.svg" alt="" />
-      </header>
+      <Header
+        handleClick={ handleClick }
+        handleOnChange={ handleOnChange }
+        inputValue={ input }
+      />
       <article>
         <div className="container">
           <h3>Categorias:</h3>
@@ -69,23 +71,7 @@ function Index() {
           </ul>
         </div>
         <div className="grid">
-          {productList.length > 0 ? (
-            productList.map((product) => {
-              const { id, price, thumbnail, title } = product;
-              return (
-                <CardProduct
-                  key={ id }
-                  productName={ title }
-                  productImg={ thumbnail }
-                  productPrice={ price }
-                />
-              );
-            })
-          ) : (
-            <h3 data-testid="home-initial-message">
-              Digite algum termo de pesquisa ou escolha uma categoria.
-            </h3>
-          )}
+          {isLoading ? (<h3> carregando...</h3>) : (contentProductList)}
         </div>
       </article>
 
