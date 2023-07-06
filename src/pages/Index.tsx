@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CardProduct from '../components/CardProduct';
 import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
 import './index.css';
@@ -87,7 +88,11 @@ function Index() {
           )}
         </div>
       </article>
-    </div>
+
+      <Link to="/cart" data-testid="shopping-cart-button">
+        <img src="./wireframes/cart.jpg" alt="carinho" />
+      </Link>
+    </>
   );
 }
 
