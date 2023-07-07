@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import CardProduct from '../components/CardProduct';
 import { getCategories } from '../services/api';
-import { ContextOutlet } from '../types';
+import { ContextOutlet, PropTypes } from '../types';
 import './index.css';
 
 type CategoriasProp = {
@@ -10,7 +10,7 @@ type CategoriasProp = {
   name: string;
 };
 
-function Index() {
+function Index({ handleClickLocalStorage }: PropTypes) {
   const [productList, isLoading, handleClick]: ContextOutlet = useOutletContext();
   const [categorias, setCategorias] = useState<Array<CategoriasProp>>();
 
@@ -34,6 +34,8 @@ function Index() {
           productName={ title }
           productImg={ thumbnail }
           productPrice={ price }
+          objProduct={ product }
+          handleOnClick={ handleClickLocalStorage }
         />
       );
     })

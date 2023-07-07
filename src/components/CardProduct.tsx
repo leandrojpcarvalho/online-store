@@ -5,10 +5,12 @@ type Props = {
   productName: string;
   productImg: string;
   productPrice: string;
+  handleOnClick: (param: any) => void;
+  objProduct: object;
 };
 
 function CardProduct(props:Props) {
-  const { id, productImg, productName, productPrice } = props;
+  const { id, productImg, productName, productPrice, handleOnClick, objProduct } = props;
   const navigator = useNavigate();
   const handleGoToProductDetails = () => {
     navigator(`/product/${id}`);
@@ -24,7 +26,13 @@ function CardProduct(props:Props) {
         <h3>{productName}</h3>
         <h4>{`R$ ${productPrice}`}</h4>
       </div>
-      <button className="button">Adicionar ao carrinho</button>
+      <button
+        className="button"
+        data-testid="product-add-to-cart"
+        onClick={ () => handleOnClick(objProduct) }
+      >
+        Adicionar ao carrinho
+      </button>
     </div>
   );
 }
