@@ -1,22 +1,23 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 import Header from '../components/Header';
 import { Product } from '../types';
 import './index.css';
 
 function Layout() {
+  const [input, setInput] = useState<string>('');
   const [productList, setProductList] = useState<Array<Product>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [input, setInput] = useState<string>('');
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
   };
 
-  const handleClick = async (e:string) => {
+  const handleClick = async (e?:string) => {
     setIsLoading(true);
-    const responseArrProducts = await getProductsFromCategoryAndQuery(undefined, e);
+    const search = !e ? input : e;
+    const responseArrProducts = await getProductsFromCategoryAndQuery(undefined, search);
     setProductList(responseArrProducts.results);
     setIsLoading(false);
   };
@@ -31,7 +32,7 @@ function Layout() {
         />
       </div>
       <main>
-        <Outlet />
+        <Outlet context={ [productList, isLoading, handleClick] } />
       </main>
     </>
   );

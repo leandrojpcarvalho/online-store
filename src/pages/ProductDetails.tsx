@@ -27,7 +27,7 @@ function ProductDetails() {
       setIsLoading(false);
     };
     setProductState();
-  }, []);
+  }, [productId]);
 
   const { price, thumbnail, title } = product;
   return (
