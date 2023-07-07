@@ -29,7 +29,7 @@ function ProductDetails() {
       setIsLoading(false);
     };
     setProductState();
-  }, []);
+  }, [productId]);
 
   const handleClick = () => {
     const products = localStorage.getItem('products');
@@ -61,9 +61,6 @@ function ProductDetails() {
         >
           Adicionar ao carrinho
         </button>
-        <Link to="/cart">
-          <button data-testid="shopping-cart-button">Ir para o carrinho</button>
-        </Link>
       </section>
     )
   );

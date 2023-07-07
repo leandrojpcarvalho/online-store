@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import CardProduct from '../components/CardProduct';
-import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
+import { getCategories } from '../services/api';
+import { ContextOutlet } from '../types';
 import './index.css';
-import Header from '../components/Header';
-import { Product } from '../types';
 
 type CategoriasProp = {
   id: string;
@@ -12,21 +11,8 @@ type CategoriasProp = {
 };
 
 function Index() {
-  const [productList, setProductList] = useState<Array<Product>>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [input, setInput] = useState<string>('');
+  const [productList, isLoading, handleClick]: ContextOutlet = useOutletContext();
   const [categorias, setCategorias] = useState<Array<CategoriasProp>>();
-
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.value);
-  };
-
-  const handleClick = async (e:string) => {
-    setIsLoading(true);
-    const responseArrProducts = await getProductsFromCategoryAndQuery(undefined, e);
-    setProductList(responseArrProducts.results);
-    setIsLoading(false);
-  };
 
   const categoriesChange = (e:string) => {
     handleClick(e);
@@ -59,14 +45,10 @@ function Index() {
 
   return (
     <div className="main">
-      <Header
-        handleClick={ handleClick }
-        handleOnChange={ handleOnChange }
-        inputValue={ input }
-      />
       <article>
         <div className="container list">
           <h3>Categorias:</h3>
+          <hr />
           <ul>
             {categorias && categorias.map((element:CategoriasProp) => (
               <button
