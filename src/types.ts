@@ -4,5 +4,3 @@ export type Product = {
   thumbnail: string;
   price: string;
 };
-
-export type ContextOutlet = [Product[], boolean, (e?: string) => Promise<void>];
