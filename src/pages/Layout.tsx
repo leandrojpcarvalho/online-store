@@ -25,7 +25,7 @@ function Layout() {
   };
 
   useEffect(() => {
-    localStorage.setItem('cart', '[]');
+    localStorage.setItem('products', '[]');
   }, []);
 
   return (

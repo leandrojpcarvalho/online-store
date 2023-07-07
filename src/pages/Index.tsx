@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import CardProduct from '../components/CardProduct';
 import { getCategories } from '../services/api';
-import { ContextOutlet, Product } from '../types';
+import { ContextOutlet, PropTypes } from '../types';
 import './index.css';
 
 type CategoriasProp = {
@@ -10,7 +10,7 @@ type CategoriasProp = {
   name: string;
 };
 
-function Index() {
+function Index({ handleClickLocalStorage }: PropTypes) {
   const [productList, isLoading, handleClick]: ContextOutlet = useOutletContext();
   const [categorias, setCategorias] = useState<Array<CategoriasProp>>();
 
@@ -24,15 +24,6 @@ function Index() {
     ChamaGetCategories();
   }, []);
 
-  const addToCart = (product: Product) => {
-    const dataLocalStorage = localStorage.getItem('cart');
-    const products = JSON.parse(dataLocalStorage || '[]') as Product[];
-    if (!products.includes(product)) {
-      const addProduct = [...products, product];
-      localStorage.setItem('cart', JSON.stringify(addProduct));
-    }
-  };
-
   const contentProductList = productList.length > 0 ? (
     productList.map((product) => {
       const { id, price, thumbnail, title } = product;
@@ -44,7 +35,7 @@ function Index() {
           productImg={ thumbnail }
           productPrice={ price }
           objProduct={ product }
-          handleOnClick={ addToCart }
+          handleOnClick={ handleClickLocalStorage }
         />
       );
     })

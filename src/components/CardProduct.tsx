@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { Product } from '../types';
 
 type Props = {
   id: string
