@@ -29,7 +29,7 @@ function ProductDetails() {
       setIsLoading(false);
     };
     setProductState();
-  }, []);
+  }, [productId]);
 
   const handleClick = () => {
     const products = localStorage.getItem('products');
