@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import CardProduct from '../components/CardProduct';
 import { getCategories } from '../services/api';
 import { ContextOutlet } from '../types';
+import CardProduct from '../components/CardProduct';
 import './index.css';
 
 type CategoriasProp = {
@@ -11,7 +11,7 @@ type CategoriasProp = {
 };
 
 function Index() {
-  const [productList, isLoading, handleClick]: ContextOutlet = useOutletContext();
+  const [productList, isLoading, handleClick] = useOutletContext<ContextOutlet>();
   const [categorias, setCategorias] = useState<Array<CategoriasProp>>();
 
   const categoriesChange = (e:string) => {

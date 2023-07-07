@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Header from '../components/Header';
-import { Product } from '../types';
+import { ContextOutlet, Product } from '../types';
 import './index.css';
+
+Outlet.prototype as ContextOutlet;
 
 function Layout() {
   const [input, setInput] = useState<string>('');
