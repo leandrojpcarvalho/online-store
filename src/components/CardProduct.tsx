@@ -15,7 +15,11 @@ function CardProduct(props:Props) {
   };
   return (
     <div className="card" data-testid="product">
-      <div onClick={ handleGoToProductDetails } aria-hidden="true">
+      <div
+        onClick={ handleGoToProductDetails }
+        aria-hidden="true"
+        data-testid="product-detail-link"
+      >
         <img src={ productImg } alt={ `Foto do produto ${productName}` } />
         <h3>{productName}</h3>
         <h4>{`R$ ${productPrice}`}</h4>

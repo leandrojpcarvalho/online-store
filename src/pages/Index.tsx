@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import CardProduct from '../components/CardProduct';
-import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
+import { getCategories } from '../services/api';
+import { ContextOutlet } from '../types';
 import './index.css';
-import Header from '../components/Header';
-import { Product } from '../types';
 
 type CategoriasProp = {
   id: string;
@@ -12,20 +11,11 @@ type CategoriasProp = {
 };
 
 function Index() {
-  const [productList, setProductList] = useState<Array<Product>>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [input, setInput] = useState<string>('');
+  const [productList, isLoading, handleClick]: ContextOutlet = useOutletContext();
   const [categorias, setCategorias] = useState<Array<CategoriasProp>>();
-  //
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.value);
-  };
 
-  const handleClick = async () => {
-    setIsLoading(true);
-    const responseArrProducts = await getProductsFromCategoryAndQuery(undefined, input);
-    setProductList(responseArrProducts.results);
-    setIsLoading(false);
+  const categoriesChange = (e:string) => {
+    handleClick(e);
   };
 
   const ChamaGetCategories = async () => { setCategorias(await getCategories()); };
@@ -55,29 +45,26 @@ function Index() {
 
   return (
     <div className="main">
-      <Header
-        handleClick={ handleClick }
-        handleOnChange={ handleOnChange }
-        inputValue={ input }
-      />
       <article>
-        <div className="container">
+        <div className="container list">
           <h3>Categorias:</h3>
+          <hr />
           <ul>
             {categorias && categorias.map((element:CategoriasProp) => (
-              <li key={ element.id } data-testid="category">
+              <button
+                className="ulButton"
+                key={ element.id }
+                data-testid="category"
+                onClick={ () => categoriesChange(element.name) }
+              >
                 { element.name }
-              </li>))}
+              </button>))}
           </ul>
         </div>
         <div className="grid">
           {isLoading ? (<h3> carregando...</h3>) : (contentProductList)}
         </div>
       </article>
-
-      <Link to="/cart" data-testid="shopping-cart-button">
-        <img src="./wireframes/cart.jpg" alt="carinho" />
-      </Link>
     </div>
   );
 }
