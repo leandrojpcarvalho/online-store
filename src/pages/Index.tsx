@@ -47,7 +47,7 @@ function Index() {
     <div className="main">
       <article>
         <div className="container list">
-          <h3>Categorias:</h3>
+          <h2 className="h2list">Categorias:</h2>
           <hr />
           <ul>
             {categorias && categorias.map((element:CategoriasProp) => (

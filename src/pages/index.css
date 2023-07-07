@@ -3,22 +3,39 @@ body {
 }
 
 input {
+  height: 15px;
   padding: 10px;
   width: 115%;
 }
 
+main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
 
 .main {
   display: flex;
   flex-direction: column;
+  height: auto;
   width: 100%;
 }
 
 header {
+  align-items: center;
   background-color: #003be5;
   display: flex;
+  height: 100px;
   justify-content: space-around;
   width: 100%;
+}
+
+.logoimage {
+  height: 80%;
+  margin-left: 23%;
+  margin-right: 23%;
 }
 
 article {
@@ -35,7 +52,7 @@ article {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  width: 23%;
+  width: 310px;
 }
 
 .row {
@@ -46,8 +63,13 @@ article {
 
 .list {
   background-color: white;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
+}
+
+.h2list {
+  color: #003be5;
 }
 
 .grid {
@@ -83,6 +105,7 @@ article {
   border: none;
   border-radius: 3px;
   box-shadow: 0 2px 5px gray;
+  cursor: pointer;
   padding: 10px;
   width: 100%;
 }
@@ -95,7 +118,7 @@ article {
 .search {
   align-items: center;
   background-color: white;
-  border: none;
+  border: 0;
   box-shadow: 0 2px 2px gray;
   display: flex;
   height: 35px;
@@ -107,23 +130,71 @@ article {
 
 .search:hover {
   cursor: pointer;
+  filter: brightness(70%);
+  transition: 300ms;
 }
 
 .ulButton {
   background-color: rgba(255, 255, 255, 0);
   border: 0;
-  font-size: 15px;
-  height: 40px;
+  color: #444955;
+  cursor: pointer;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 35px;
+  line-height: normal;
   width: 100%;
 }
 
 .ulButton:hover {
   background-color: rgba(0, 0, 0, 0.048);
-  color: #31c28d;
+  color: #003be5;
   transition: 300ms;
 }
 
 ul {
   margin: 0;
   padding: 0;
+}
+
+.carrinhoimg:hover {
+  cursor: pointer;
+  filter: brightness(70%);
+  transition: 300ms;
+}
+
+section {
+  align-items: center;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  box-shadow: 0 3px 5px gray;
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  justify-items: center;
+  margin-top: 7%;
+  padding: 10px;
+  width: 600px;
+}
+
+section img {
+  height: 300px;
+  width: 300px;
+}
+
+section h3 {
+  font-size: 60px;
+  text-align: center;
+}
+
+section button {
+  background-color: #31c28d;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 2px 5px gray;
+  font-size: 20px;
+  padding: 10px;
+  width: 100%;
 }
