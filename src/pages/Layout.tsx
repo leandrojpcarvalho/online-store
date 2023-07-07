@@ -15,7 +15,7 @@ function Layout() {
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
   };
-
+  //
   const handleClick = async (e?:string) => {
     setIsLoading(true);
     const search = !e ? input : e;
