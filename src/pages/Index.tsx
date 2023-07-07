@@ -48,6 +48,7 @@ function Index() {
       <article>
         <div className="container list">
           <h3>Categorias:</h3>
+          <hr />
           <ul>
             {categorias && categorias.map((element:CategoriasProp) => (
               <button
