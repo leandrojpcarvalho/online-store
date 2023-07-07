@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Product {
   id: string;
@@ -8,25 +8,20 @@ interface Product {
 }
 
 function Cart() {
-  const products = JSON.parse(localStorage.getItem('products') || '[]');
-  console.log(products);
   const [cart, setCart] = useState<Product[]>([]);
-
-  const addToCart = (product: Product) => {
-    const updatedCart = [...cart, product];
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    setIsEmpty(false);
-  };
+  useEffect(() => {
+    const products = JSON.parse(localStorage.getItem('cart') || '[]');
+    setCart(products);
+  }, []);
 
   return (
     <div>
-      {isEmpty ? (
+      {cart.length === 0 || cart === null ? (
         <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
       ) : (
         <div>
-          {cart.map((product, index) => (
-            <div key={ index }>
+          {cart.map((product) => (
+            <div key={ product.id }>
               <p data-testid="shopping-cart-product-name">{product.title}</p>
               <p>
                 Price:

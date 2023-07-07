@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import CardProduct from '../components/CardProduct';
 import { getCategories } from '../services/api';
-import { ContextOutlet } from '../types';
+import { ContextOutlet, Product } from '../types';
 import './index.css';
 
 type CategoriasProp = {
@@ -24,6 +24,15 @@ function Index() {
     ChamaGetCategories();
   }, []);
 
+  const addToCart = (product: Product) => {
+    const dataLocalStorage = localStorage.getItem('cart');
+    const products = JSON.parse(dataLocalStorage || '[]') as Product[];
+    if (!products.includes(product)) {
+      const addProduct = [...products, product];
+      localStorage.setItem('cart', JSON.stringify(addProduct));
+    }
+  };
+
   const contentProductList = productList.length > 0 ? (
     productList.map((product) => {
       const { id, price, thumbnail, title } = product;
@@ -34,6 +43,8 @@ function Index() {
           productName={ title }
           productImg={ thumbnail }
           productPrice={ price }
+          objProduct={ product }
+          handleOnClick={ addToCart }
         />
       );
     })

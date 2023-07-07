@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Header from '../components/Header';
@@ -23,6 +23,10 @@ function Layout() {
     setProductList(responseArrProducts.results);
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    localStorage.setItem('cart', '[]');
+  }, []);
 
   return (
     <>
