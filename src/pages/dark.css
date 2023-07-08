@@ -1,5 +1,5 @@
 body {
-  background-color: whitesmoke;
+  background-color: rgb(49, 49, 49);
 }
 
 input {
@@ -25,7 +25,7 @@ main {
 
 header {
   align-items: center;
-  background-color: #003be5;
+  background-color: black;
   display: flex;
   height: 100px;
   justify-content: space-around;
@@ -34,7 +34,7 @@ header {
 
 footer {
   align-items: center;
-  background-color: #003be5;
+  background-color: black;
   display: flex;
   flex-direction: column;
   height: 170px;
@@ -72,14 +72,14 @@ article {
 }
 
 .list {
-  background-color: white;
+  background-color: black;
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
 }
 
 .h2list {
-  color: #003be5;
+  color: #31c28d;
 }
 
 .grid {
@@ -109,6 +109,7 @@ section h3 {
 }
 
 .grid h3 {
+  color: #31c28d;
   font-size: 15px;
 }
 
@@ -121,10 +122,10 @@ section h3 {
 
 .card {
   align-items: center;
-  background-color: white;
-  border: 2px solid white;
+  background-color: black;
+  border: 2px solid black;
   border-radius: 5px;
-  box-shadow: 0 3px 5px gray;
+  box-shadow: 0 3px 5px black;
   display: flex;
   flex-direction: column;
   height: 350px;
@@ -135,7 +136,7 @@ section h3 {
 }
 
 .card:hover {
-  background-color: whitesmoke;
+  background-color: black;
   box-shadow: 0 12px 15px gray;
   height: 355px;
   transition: 300ms;
@@ -183,7 +184,7 @@ section h3 {
 .ulButton {
   background-color: rgba(255, 255, 255, 0);
   border: 0;
-  color: #444955;
+  color: white;
   cursor: pointer;
   font-size: 16px;
   font-style: normal;
