@@ -3,6 +3,7 @@ import { useOutletContext } from 'react-router-dom';
 import CardProduct from '../components/CardProduct';
 import { getCategories } from '../services/api';
 import { ContextOutlet, PropTypes } from '../types';
+// import './dark.css';
 import './index.css';
 
 type CategoriasProp = {
