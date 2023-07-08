@@ -15,6 +15,7 @@ function Header({ handleOnChange, handleClick, inputValue }: PropsHeader) {
           data-testid="query-input"
           onChange={ handleOnChange }
           value={ inputValue }
+          placeholder="Digite o que você busca"
         />
         <button
           data-testid="query-button"

@@ -33,7 +33,10 @@ function ProductDetails({ handleClickLocalStorage }: PropTypes) {
 
   return (
     isLoading ? (
-      <h2>Carregando...</h2>
+      <div className="Informacoes carregando">
+        <img src="https://www.blogson.com.br/wp-content/uploads/2017/10/loading-gif-transparent-10.gif" alt="loading" />
+        <h3> carregando</h3>
+      </div>
     ) : (
       <section
         className="product"

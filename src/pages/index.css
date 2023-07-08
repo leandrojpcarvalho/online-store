@@ -32,6 +32,16 @@ header {
   width: 100%;
 }
 
+footer {
+  align-items: center;
+  background-color: #003be5;
+  display: flex;
+  flex-direction: column;
+  height: 170px;
+  justify-content: space-around;
+  width: 100%;
+}
+
 .logoimage {
   height: 80%;
   margin-left: 23%;
@@ -73,6 +83,7 @@ article {
 }
 
 .grid {
+  align-content: stretch;
   border-radius: 5px;
   display: grid;
   gap: 20px;
@@ -80,6 +91,32 @@ article {
   justify-items: center;
   padding: 20px;
   width: 80%;
+}
+
+section img {
+  height: 300px;
+  width: 300px;
+}
+
+.grid img {
+  height: 150px;
+  width: 150px;
+}
+
+section h3 {
+  font-size: 60px;
+  text-align: center;
+}
+
+.grid h3 {
+  font-size: 15px;
+}
+
+.grid h4 {
+  color: #003be5;
+  font-size: 40px;
+  font-weight: 300;
+  margin: 0;
 }
 
 .card {
@@ -90,14 +127,19 @@ article {
   box-shadow: 0 3px 5px gray;
   display: flex;
   flex-direction: column;
+  height: 350px;
+  justify-content: space-around;
   justify-items: center;
   padding: 10px;
-  width: 235px;
+  width: 250px;
 }
 
 .card:hover {
-  background-color: rgb(238, 238, 238);
+  background-color: whitesmoke;
+  box-shadow: 0 12px 15px gray;
+  height: 355px;
   transition: 300ms;
+  width: 255px;
 }
 
 .button {
@@ -106,12 +148,16 @@ article {
   border-radius: 3px;
   box-shadow: 0 2px 5px gray;
   cursor: pointer;
+  font-size: 18px;
+  font-weight: 200;
   padding: 10px;
   width: 100%;
 }
 
 .button:hover {
   background-color: #267e5e;
+  font-size: 20px;
+  font-weight: 500;
   transition: 300ms;
 }
 
@@ -150,6 +196,7 @@ article {
 .ulButton:hover {
   background-color: rgba(0, 0, 0, 0.048);
   color: #003be5;
+  font-size: 18px;
   transition: 300ms;
 }
 
@@ -179,16 +226,6 @@ section {
   width: 600px;
 }
 
-section img {
-  height: 300px;
-  width: 300px;
-}
-
-section h3 {
-  font-size: 60px;
-  text-align: center;
-}
-
 section button {
   background-color: #31c28d;
   border: none;
@@ -198,3 +235,61 @@ section button {
   padding: 10px;
   width: 100%;
 }
+
+.Informacoes {
+  align-items: center;
+  color: #31c28d;
+  display: flex;
+  font-weight: 900;
+  height: calc(100vh - 100px);
+  justify-content: center;
+  width: 100%;
+}
+
+.Informacoes h3 {
+  font-size: 30px;
+}
+
+.carregando {
+  color: #003be5;
+  display: flex;
+  flex-direction: column;
+}
+
+.pessoasMain {
+  display: flex;
+  flex-direction: row;
+}
+
+.pessoasMain p {
+  color: #31c28d;
+}
+
+.PessoasChild {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.PessoaImg {
+  border-radius: 100%;
+  width: 80px;
+}
+
+.PessoasChild a {
+  color: white;
+  text-decoration: none;
+}
+
+.nada {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  justify-content: center;
+  width: 40%;
+}
+
