@@ -80,23 +80,23 @@ function Index({ handleClickLocalStorage }: PropTypes) {
         <p>© 2023 Projeto desenvolvido por:</p>
         <div className="pessoasMain">
           <div className="PessoasChild">
-            <img className="PessoaImg" src="" alt="Anna" />
+            <img className="PessoaImg" src="https://media.licdn.com/dms/image/D4E03AQH4Vq0ZmmwXJQ/profile-displayphoto-shrink_200_200/0/1686765635961?e=1694044800&v=beta&t=fbNlQnOWS_lAYcIqAEiHASUg_qW0oFKFSz5_E2X6vSo" alt="Anna" />
             <a href="www.linkedin.com/in/mathban">Anna Escolaro</a>
           </div>
           <div className="PessoasChild">
-            <img className="PessoaImg" src="" alt="Brenda" />
+            <img className="PessoaImg" src="https://media.licdn.com/dms/image/C4D03AQGz7z1E0NLaOQ/profile-displayphoto-shrink_100_100/0/1657910942363?e=1694044800&v=beta&t=OxfGhKwfq1RUMvuFzVoE6jY9Nng6mQXbWB6sYdBhfpE" alt="Brenda" />
             <a href="www.linkedin.com/in/mathban">Brenda Reis</a>
           </div>
           <div className="PessoasChild">
-            <img className="PessoaImg" src="" alt="Felipe" />
+            <img className="PessoaImg" src="https://media.licdn.com/dms/image/D4E03AQEOfSMcVPUqwA/profile-displayphoto-shrink_100_100/0/1679633498365?e=1694044800&v=beta&t=lSjJQuJGyRnrp2G-yeNvlvLIGTqvPYJv4j2o0uI5adY" alt="Felipe" />
             <a href="www.linkedin.com/in/mathban">Felipe Vergara</a>
           </div>
           <div className="PessoasChild">
-            <img className="PessoaImg" src="" alt="Leandro" />
-            <a href="www.linkedin.com/in/mathban">Leandro José</a>
+            <img className="PessoaImg" src="https://media.licdn.com/dms/image/D4E35AQHibJlh-cwfKg/profile-framedphoto-shrink_200_200/0/1680046031006?e=1689397200&v=beta&t=zy4GvI16KRjlWdU_1xZwgz5y8fOdsonH7pepTrgyBSQ" alt="Leandro" />
+            <a href="www.linkedin.com/in/mathban">Leandro Carvalho</a>
           </div>
           <div className="PessoasChild">
-            <img className="PessoaImg" src="" alt="Luiz" />
+            <img className="PessoaImg" src="https://media.licdn.com/dms/image/D4D03AQGlRZAsINzahg/profile-displayphoto-shrink_100_100/0/1680542139861?e=1694044800&v=beta&t=WttdjAnykM-K5451o3svs-TNKwuIP_VUw6HYO-4zuik" alt="Luiz" />
             <a href="www.linkedin.com/in/mathban">Luiz Henrique</a>
           </div>
           <div className="PessoasChild">
