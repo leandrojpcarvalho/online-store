@@ -2,7 +2,8 @@ export type Product = {
   id: string;
   title: string;
   thumbnail: string;
-  price: string;
+  price: number;
+  quantity: number;
 };
 
 export type PropTypes = {

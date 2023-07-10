@@ -236,6 +236,33 @@ section button {
   width: 100%;
 }
 
+.cart-item-button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  outline: inherit;
+  padding: 10px;
+}
+
+.cart-product {
+  display: block;
+}
+
+p {
+  display: inline;
+  padding: 10px;
+}
+
+.cart-box {
+  background-color: white;
+  box-shadow: 5px 3px 3px 3px rgb(85, 84, 84);
+  display: flex;
+  justify-content: center;
+  max-width: 1100px;
+}
+
 .Informacoes {
   align-items: center;
   color: #31c28d;
@@ -292,4 +319,3 @@ section button {
   justify-content: center;
   width: 40%;
 }
-
