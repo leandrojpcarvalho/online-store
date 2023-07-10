@@ -19,6 +19,7 @@ function Header({ handleOnChange, handleClick, inputValue }: PropsHeader) {
         </Link>
         <Link
           to="/"
+          onClick={ () => handleClick('') }
           className="returnbtn"
         >
           <img src="images/icons8-casa.svg" alt="" />
@@ -41,7 +42,7 @@ function Header({ handleOnChange, handleClick, inputValue }: PropsHeader) {
       </div>
       <img className="logoimage" src="../src/assets/img/logo.svg" alt="" />
       <Link to="/cart" data-testid="shopping-cart-button">
-        <img className="carrinhoimg" src="./src/assets/img/cart.svg" alt="carinho" />
+        <img className="carrinhoimg" src="images/icons8-carrinho-96.png" alt="carinho" />
       </Link>
 
     </header>

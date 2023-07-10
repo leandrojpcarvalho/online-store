@@ -4,6 +4,7 @@ body {
 
 input {
   height: 15px;
+  outline: none;
   padding: 10px;
   width: 115%;
 }
@@ -48,8 +49,8 @@ footer {
 
 .logoimage {
   height: 80%;
-  margin-left: 23%;
-  margin-right: 23%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 article {
