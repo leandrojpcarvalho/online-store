@@ -25,8 +25,8 @@ function App() {
           element={ <ProductDetails handleClickLocalStorage={ addToCart } /> }
         />
         <Route path="*" element={ <NotFound /> } />
+        <Route path="/cart" element={ <Cart /> } />
       </Route>
-      <Route path="/cart" element={ <Cart /> } />
     </Routes>
   );
 }
