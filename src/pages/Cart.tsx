@@ -37,7 +37,7 @@ function Cart() {
         {cart.length === 0 || cart === null ? (
           <div className="cartPageVazio">
             <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-            <img src="src/fantasma.png" alt="" />
+            <img src="images/fantasma.png" alt="" />
             <Link
               className="voltarbtn"
               onClick={ () => window.history.back() }
