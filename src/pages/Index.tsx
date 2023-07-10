@@ -36,7 +36,7 @@ function Index({ handleClickLocalStorage }: PropTypes) {
           id={ id }
           productName={ title }
           productImg={ thumbnail }
-          productPrice={ price }
+          productPrice={ price.toString() }
           objProduct={ product }
           handleOnClick={ handleClickLocalStorage }
         />
