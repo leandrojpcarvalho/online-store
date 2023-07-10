@@ -97,6 +97,22 @@ function Cart() {
                 <hr />
               </>
             ))}
+            <div className="bntCart2">
+              <Link
+                className="voltarbtn"
+                onClick={ () => window.history.back() }
+                to="/"
+              >
+                continuar comprando
+              </Link>
+              <Link
+                className="voltarbtn finalizarbtn"
+                onClick={ () => window.history.back() }
+                to="/"
+              >
+                finalizar compra
+              </Link>
+            </div>
           </div>
         )}
       </div>
