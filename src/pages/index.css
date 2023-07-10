@@ -13,6 +13,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 100px;
   width: 100%;
 }
 
@@ -29,6 +30,8 @@ header {
   display: flex;
   height: 100px;
   justify-content: space-around;
+  position: fixed;
+  top: 0;
   width: 100%;
 }
 
@@ -39,6 +42,7 @@ footer {
   flex-direction: column;
   height: 170px;
   justify-content: space-around;
+  margin-top: 80px;
   width: 100%;
 }
 
@@ -247,7 +251,10 @@ section button {
 }
 
 .cart-product {
-  display: block;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 p {
@@ -257,10 +264,10 @@ p {
 
 .cart-box {
   background-color: white;
-  box-shadow: 5px 3px 3px 3px rgb(85, 84, 84);
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  max-width: 1100px;
+  width: 90%;
 }
 
 .Informacoes {
@@ -318,4 +325,54 @@ p {
   height: 70vh;
   justify-content: center;
   width: 40%;
+}
+
+.cartPage {
+  align-items: center;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  box-shadow: 0 3px 5px gray;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-items: center;
+  margin-top: 7%;
+  padding: 10px;
+  text-align: center;
+  width: 1000px;
+}
+
+.cartPage hr {
+  width: 97%;
+}
+
+.cartPageVazio {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cartPageVazio img {
+  margin-bottom: 50px;
+  margin-top: 10px;
+  width: 200px;
+}
+
+.voltarbtn {
+  align-items: center;
+  background: #31c28d;
+  color: white;
+  display: flex;
+  font-size: 25px;
+  height: 40px;
+  justify-content: center;
+  margin-bottom: 20px;
+  text-decoration: none;
+  width: 50%;
+}
+
+.voltarbtn:hover {
+  background-color: #267e5e;
 }

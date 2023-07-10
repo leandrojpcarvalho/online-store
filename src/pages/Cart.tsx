@@ -30,64 +30,77 @@ function Cart() {
   };
 
   return (
-    <>
-      <Link to="/">Voltar</Link>
+    <div className="cartPage">
       <div className="cart-box">
         <h1>Carrinho de Compras</h1>
+        <hr />
         {cart.length === 0 || cart === null ? (
-          <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+          <div className="cartPageVazio">
+            <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+            <img src="src/fantasma.png" alt="" />
+            <Link
+              className="voltarbtn"
+              onClick={ () => window.history.back() }
+              to="/"
+            >
+              voltar às compras
+            </Link>
+          </div>
         ) : (
           <div>
             {cart.map((product) => (
-              <div key={ product.id } className="cart-product">
-                <button
-                  type="button"
-                  className="cart-item-button"
-                  data-testid="remove-product"
-                  onClick={ () => handleRemoveProduct(product.id) }
-                >
-                  <img src="../src/assets/img/cart_remove.svg" alt="remove produto" />
-                </button>
-                <img src={ product.thumbnail } alt="imagem do produto" />
-                <p data-testid="shopping-cart-product-name">{product.title}</p>
-                <p>
-                  Price:
-                  {' '}
-                  {product.price}
-                </p>
-                <button
-                  type="button"
-                  className="cart-item-button"
-                  data-testid="product-decrease-quantity"
-                  onClick={ () => handleUpdateCart(product.id, product.quantity - 1) }
-                >
-                  <img
-                    src="../src/assets/img/cart_decrease.svg"
-                    alt="diminuir quantidade"
-                  />
-                </button>
-                <span
-                  data-testid="shopping-cart-product-quantity"
-                >
-                  {product.quantity}
-                </span>
-                <button
-                  type="button"
-                  className="cart-item-button"
-                  data-testid="product-increase-quantity"
-                  onClick={ () => handleUpdateCart(product.id, product.quantity + 1) }
-                >
-                  <img
-                    src="../src/assets/img/cart_increase.svg"
-                    alt="aumentar quantidade"
-                  />
-                </button>
-              </div>
+              <>
+                <div key={ product.id } className="cart-product">
+                  <button
+                    type="button"
+                    className="cart-item-button"
+                    data-testid="remove-product"
+                    onClick={ () => handleRemoveProduct(product.id) }
+                  >
+                    <img src="../src/assets/img/cart_remove.svg" alt="remove produto" />
+                  </button>
+                  <img src={ product.thumbnail } alt="imagem do produto" />
+                  <p data-testid="shopping-cart-product-name">{product.title}</p>
+                  <p>
+                    R$
+                    {' '}
+                    {product.price}
+                  </p>
+                  <button
+                    type="button"
+                    className="cart-item-button"
+                    data-testid="product-decrease-quantity"
+                    onClick={ () => handleUpdateCart(product.id, product.quantity - 1) }
+                  >
+                    <img
+                      src="../src/assets/img/cart_decrease.svg"
+                      alt="diminuir quantidade"
+                    />
+                  </button>
+                  <span
+                    data-testid="shopping-cart-product-quantity"
+                  >
+                    {product.quantity}
+                  </span>
+                  <button
+                    type="button"
+                    className="cart-item-button"
+                    data-testid="product-increase-quantity"
+                    onClick={ () => handleUpdateCart(product.id, product.quantity + 1) }
+                  >
+                    <img
+                      src="../src/assets/img/cart_increase.svg"
+                      alt="aumentar quantidade"
+                    />
+                  </button>
+                </div>
+                <hr />
+              </>
             ))}
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

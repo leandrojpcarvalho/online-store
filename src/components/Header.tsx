@@ -10,6 +10,13 @@ function Header({ handleOnChange, handleClick, inputValue }: PropsHeader) {
   return (
     <header>
       <div className="container row">
+        {/* <Link
+          className="voltarbtn"
+          onClick={ () => window.history.back() }
+          to="/"
+        >
+          v
+        </Link> */}
         <input
           type="text"
           data-testid="query-input"
