@@ -9,9 +9,9 @@ import { Product } from './types';
 
 function App() {
   const [cart, setCart] = useState<Product[]>([]);
-  const addToCart = (product: Product) => {
-    if (!cart.includes(product)) {
-      const addProduct = [...cart, product];
+  const addToCart = ({ id, title, price, thumbnail }: Product) => {
+    if (!cart.some((item) => item.id === id)) {
+      const addProduct = [...cart, { id, title, price, quantity: 1, thumbnail }];
       localStorage.setItem('cart', JSON.stringify(addProduct));
       setCart(addProduct);
     }
