@@ -48,7 +48,7 @@ export type ProductAttributes = {
 };
 
 export type PropTypes = {
-  handleClickLocalStorage: (productId: string) => void;
+  handleClickLocalStorage: (productId: Product) => void;
 };
 
 export type ContextOutlet = [Product[], boolean, (e?: string) => Promise<void>];

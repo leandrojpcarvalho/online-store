@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { getProductById } from '../services/api';
 import { LocalStorageTrybeComments, Product, PropTypes } from '../types';
+import Comments from '../components/Comments';
 
 function GetIdProduct() {
   const { productId } = useParams();
@@ -24,11 +25,18 @@ const INITIAL_STATE_FORM = {
 function ProductDetails({ handleClickLocalStorage }: PropTypes) {
   const [product, setProduct] = useState(INITIAL_STATE);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [comments, setComments] = useState<LocalStorageTrybeComments[]>([]);
   const [form, setForm] = useState(INITIAL_STATE_FORM);
   const [toggleErrorMsg, setToggleErrorMsg] = useState(false);
   const productId = GetIdProduct();
   const { price, thumbnail, title } = product;
 
+  const loadCommentosLocalStorage = () => {
+    const hasComments = localStorage.getItem(product.id);
+    if (hasComments) {
+      setComments(JSON.parse(hasComments));
+    }
+  };
   useEffect(() => {
     const setProductState = async () => {
       if (!productId) throw new Error('novo Erro');
@@ -37,14 +45,14 @@ function ProductDetails({ handleClickLocalStorage }: PropTypes) {
       setIsLoading(false);
     };
     setProductState();
-  }, [productId]);
+    loadCommentosLocalStorage();
+  }, [product]);
 
-  const setNewState = (event: React.FormEvent<HTMLInputElement>
-  & React.ChangeEventHandler<HTMLInputElement>
-  & React.TextareaHTMLAttributes<HTMLElement>
-  & React.ChangeEventHandler<HTMLTextAreaElement>) => {
-    const inputType = event.currentTarget.name;
-    const inputValue = event.currentTarget.value;
+  const setNewState = (event: React.FormEvent<HTMLElement> &
+  (React.FormEvent<HTMLTextAreaElement> |
+  React.InputHTMLAttributes<HTMLInputElement>)) => {
+    const inputType = (event.target as HTMLInputElement).name;
+    const inputValue = (event.target as HTMLInputElement).value;
     setForm({ ...form, [inputType]: inputValue });
   };
 
@@ -64,30 +72,22 @@ function ProductDetails({ handleClickLocalStorage }: PropTypes) {
     });
   };
 
-  const handleOnClick = (event: React.FormEvent<HTMLInputElement>) => {
+  const handleOnClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (isValidData()) {
       setToggleErrorMsg(false);
+      const newData = [...comments, form];
+      setComments(newData);
       setForm(INITIAL_STATE_FORM);
-      setCommentLocalStorage(product.id, form);
+      localStorage.setItem(product.id, JSON.stringify(newData));
       return;
     }
     setToggleErrorMsg(true);
   };
 
-  const setCommentLocalStorage = (prodId: string, data: LocalStorageTrybeComments) => {
-    const newData = JSON.stringify([data]);
-    let prevData = localStorage.getItem(prodId);
-    if (!prevData) return localStorage.setItem(prodId, newData);
-    prevData = JSON.parse(prevData);
-    if (!prevData) return;
-    const updateData = [...prevData, data];
-    localStorage.setItem(prodId, JSON.stringify(updateData));
-  };
-
   const isValidData = () => {
     const rate = Number(rating);
-    const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+    const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     const isValidEmail = regexEmail.test(email);
     const isValidRate = rate > 0 && rate <= 5;
     return (isValidEmail && isValidRate);
@@ -116,7 +116,8 @@ function ProductDetails({ handleClickLocalStorage }: PropTypes) {
         </div>
         <button
           data-testid="product-detail-add-to-cart"
-          onClick={ () => handleClickLocalStorage(product.id) }>
+          onClick={ () => handleClickLocalStorage(product) }
+        >
           Adicionar ao carrinho
         </button>
       </section>
@@ -147,6 +148,7 @@ function ProductDetails({ handleClickLocalStorage }: PropTypes) {
               onChange={ setNewState }
               value={ text }
               placeholder="Faça o seu comentário!"
+              data-testid="product-detail-evaluation"
             />
             { toggleErrorMsg ? <p data-testid="error-msg">Campos inválidos</p> : '' }
             <button
@@ -160,16 +162,7 @@ function ProductDetails({ handleClickLocalStorage }: PropTypes) {
           </form>
         </div>
         <section className="other-comments">
-          <div className="comment grid">
-            <p> fulando@gmail.com</p>
-            <p> rate 3</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
-              illum! Error nam amet, vel impedit quod doloremque illum sed quae
-              quibusdam recusandae, totam eaque, quis saepe voluptatum velit.
-              Architecto, eum.
-            </p>
-          </div>
+          {comments.map((comment, index) => <Comments key={ index } { ...comment } />)}
         </section>
       </section>
     </>
