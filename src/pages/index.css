@@ -319,3 +319,73 @@ p {
   justify-content: center;
   width: 40%;
 }
+
+.container-new {
+  display: flex;
+  width: 75%;
+} 
+
+.form {
+  align-items: center;
+  grid-template-rows: 1fr 2fr 1fr;
+  gap: 0;
+  width: 100%;
+  padding: 0;
+}
+
+input#email {
+  font-size: 16px;
+  grid-column: span 2;
+  outline: none;
+  padding: 10px;
+  width: 80%;
+}
+
+textarea#comment {
+  font-size: 16px;
+  grid-column: span 3;
+  outline: none;
+  padding: 10px;
+  width: 87%;
+}
+
+label input {
+  width: 100%;
+}
+
+button#send-comment {
+  grid-column: 3;
+  width: 75%;
+}
+
+.column {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-items: center;
+}
+
+.comments h3 {
+  font-size: 40px;
+  margin: 30px 0;
+}
+
+.comment {
+  grid-template-rows: 1fr 1fr;
+  width: 100%;
+  text-align: justify;
+  gap: 0;
+}
+
+.comment :nth-child(1){
+  grid-column: span 2;
+}
+
+.comment :nth-child(3){
+  grid-column: span 3;
+}
+
+
+label.container-new {
+  padding-right: 27%;
+}

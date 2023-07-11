@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Product } from '../types';
+import { CartType } from '../types';
 
 function Cart() {
-  const [cart, setCart] = useState<Product[]>([]);
+  const [cart, setCart] = useState<CartType[]>([]);
 
   useEffect(() => {
     const products = JSON.parse(localStorage.getItem('cart') || '[]');
