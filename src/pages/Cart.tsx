@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartType } from '../types';
 
-function Cart() {
-  const [cart, setCart] = useState<CartType[]>([]);
+type CartPropType = {
+  cart: CartType[];
+  setCart: (cart: CartType[]) => void,
+};
 
-  useEffect(() => {
-    const products = JSON.parse(localStorage.getItem('cart') || '[]');
-    setCart(products);
-  }, []);
+function Cart(props: CartPropType) {
+  const { cart, setCart } = props;
 
   const handleUpdateCart = (productId: string, quantity: number) => {
-    if (quantity > 0) {
+    const hasProduct = cart.find((cartItem) => cartItem.id === productId) ?? cart[0];
+    if (quantity > 0 && quantity <= hasProduct.available_quantity) {
       const updatedCart = cart.map((product) => {
         if (product.id === productId) {
           return { ...product, quantity };
@@ -19,14 +19,12 @@ function Cart() {
         return product;
       });
       setCart(updatedCart);
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
   };
 
   const handleRemoveProduct = (productId: string) => {
     const updatedCart = cart.filter((product) => product.id !== productId);
     setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   return (
@@ -49,8 +47,8 @@ function Cart() {
         ) : (
           <div>
             {cart.map((product) => (
-              <>
-                <div key={ product.id } className="cart-product">
+              <div key={ product.id }>
+                <div className="cart-product">
                   <button
                     type="button"
                     className="cart-item-button"
@@ -95,7 +93,7 @@ function Cart() {
                   </button>
                 </div>
                 <hr />
-              </>
+              </div>
             ))}
             <div className="bntCart2">
               <Link
