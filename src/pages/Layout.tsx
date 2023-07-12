@@ -15,12 +15,6 @@ function Layout({ cart }: PropType) {
   const [input, setInput] = useState<string>('');
   const [productList, setProductList] = useState<Array<Product>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [quantityItens, setQuantityItens] = useState(0);
-
-  const setQuantityShopCart = () => {
-    return cart
-      .reduce((numberOfItems, currentItem) => (numberOfItems + currentItem.quantity), 0);
-  };
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
@@ -49,7 +43,7 @@ function Layout({ cart }: PropType) {
         />
       </div>
       <main>
-        <Outlet context={ [productList, isLoading, handleClick, setQuantityItens] } />
+        <Outlet context={ [productList, isLoading, handleClick] } />
       </main>
       <footer>
         <p>© 2023 Projeto desenvolvido por:</p>
