@@ -14,6 +14,7 @@ const INITIAL_STATE: Product = {
   price: '',
   thumbnail: '',
   title: '',
+  available_quantity: 0,
 };
 
 const INITIAL_STATE_FORM = {

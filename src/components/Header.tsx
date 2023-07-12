@@ -1,12 +1,20 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { CartType } from '../types';
 
 type PropsHeader = {
   handleOnChange: (param: React.ChangeEvent<HTMLInputElement>) => void;
   handleClick: (e:string) => void;
   inputValue: string;
+  cart: CartType[]
 };
 
-function Header({ handleOnChange, handleClick, inputValue }: PropsHeader) {
+function Header({ handleOnChange, handleClick, inputValue, cart }: PropsHeader) {
+  const setQuantityShopCart = () => {
+    return cart
+      .reduce((numberOfItems, currentItem) => (numberOfItems + currentItem.quantity), 0);
+  };
+
   return (
     <header>
       <div className="container row">
@@ -43,6 +51,12 @@ function Header({ handleOnChange, handleClick, inputValue }: PropsHeader) {
       <img className="logoimage" src="../src/assets/img/logo.svg" alt="" />
       <Link to="/cart" data-testid="shopping-cart-button">
         <img className="carrinhoimg" src="images/icons8-carrinho-96.png" alt="carinho" />
+        <p
+          data-testid="shopping-cart-size"
+          style={ { color: 'white' } }
+        >
+          {setQuantityShopCart()}
+        </p>
       </Link>
 
     </header>

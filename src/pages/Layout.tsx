@@ -2,15 +2,25 @@ import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Header from '../components/Header';
-import { ContextOutlet, Product } from '../types';
+import { CartType, ContextOutlet, Product } from '../types';
 import './index.css';
 
 Outlet.prototype as ContextOutlet;
 
-function Layout() {
+type PropType = {
+  cart: CartType[];
+};
+
+function Layout({ cart }: PropType) {
   const [input, setInput] = useState<string>('');
   const [productList, setProductList] = useState<Array<Product>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [quantityItens, setQuantityItens] = useState(0);
+
+  const setQuantityShopCart = () => {
+    return cart
+      .reduce((numberOfItems, currentItem) => (numberOfItems + currentItem.quantity), 0);
+  };
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
@@ -35,10 +45,11 @@ function Layout() {
           handleClick={ handleClick }
           handleOnChange={ handleOnChange }
           inputValue={ input }
+          cart={ cart }
         />
       </div>
       <main>
-        <Outlet context={ [productList, isLoading, handleClick] } />
+        <Outlet context={ [productList, isLoading, handleClick, setQuantityItens] } />
       </main>
       <footer>
         <p>© 2023 Projeto desenvolvido por:</p>

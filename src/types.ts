@@ -3,6 +3,7 @@ export type Product = {
   title: string;
   thumbnail: string;
   price: string;
+  available_quantity: number;
 };
 
 export type CartType = {
@@ -51,4 +52,5 @@ export type PropTypes = {
   handleClickLocalStorage: (productId: Product) => void;
 };
 
-export type ContextOutlet = [Product[], boolean, (e?: string) => Promise<void>];
+export type ContextOutlet = [Product[], boolean,
+  (e?: string) => Promise<void>, (param: number) => void];
