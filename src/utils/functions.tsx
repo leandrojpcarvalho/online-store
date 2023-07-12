@@ -46,3 +46,16 @@ export const insertSvgCart = (count:number, dataTest?: string, color = 'white') 
     </svg>
   );
 };
+
+export const insertSvgFreeShipping = (param: boolean) => {
+  if (param) {
+    return (
+      <img
+        src="../../src/assets/img/frete_gratis.svg"
+        data-testid="free-shipping"
+        alt="frete grátis"
+        className="free-shipping"
+      />
+    );
+  }
+};

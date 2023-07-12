@@ -4,6 +4,7 @@ export type Product = {
   thumbnail: string;
   price: string;
   available_quantity: number;
+  shipping: { free_shipping: boolean };
 };
 
 export type CartType = {

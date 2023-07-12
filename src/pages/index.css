@@ -443,3 +443,15 @@ label input {
 .voltarbtn:hover {
   background-color: #267e5e;
 }
+
+.card div .free-shipping {
+  height: auto;
+  width: 50px;
+}
+
+.card div {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
